@@ -1,35 +1,33 @@
+// app/layout.tsx
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-
+import NavBar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import './globals.css';
-import { ThemeProvider } from './provider';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+	subsets: ['latin'],
+	variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
-	title: "Hugo's Portfolio",
-	description: 'Modern & Minimal JS Mastery Portfolio',
+	title: 'Hugo Pradier | Portfolio',
+	description: 'Portfolio de Hugo Pradier - Full Stack Developer',
 };
 
 export default function RootLayout({
 	children,
-}: Readonly<{
+}: {
 	children: React.ReactNode;
-}>) {
+}) {
 	return (
-		<html lang="en" suppressHydrationWarning>
-			<head>
-				<link rel="icon" href="/jsm-logo.png" sizes="any" />
-			</head>
-			<body className={inter.className}>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="dark"
-					enableSystem
-					disableTransitionOnChange
-				>
-					{children}
-				</ThemeProvider>
+		<html lang="fr" className={`${inter.variable}`}>
+			<body>
+				<div className="min-h-screen flex flex-col">
+					<NavBar />
+					<main className="flex-grow pt-20">{children}</main>
+					<Footer />
+				</div>
 			</body>
 		</html>
 	);
